@@ -1,2 +1,3 @@
-# ev-adjustment-calc
-Calculate items needed to change EV spreads in Pokemon games
+# [EV Adjustment Calc](https://mikewvgc.github.io/ev-adjustment-calc/)
+
+Simple calculator for adjusting EV spreads in Pokemon games.
