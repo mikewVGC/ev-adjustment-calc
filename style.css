@@ -1,0 +1,77 @@
+body { font: 1.1em Helvetica, Arial, sans-serif; }
+main { min-width: 40em; margin: 2em auto; padding: 0 2em; display: block; }
+h2 { background: #E8E8F8; padding: .5em; text-align: center; }
+p { text-align: center; }
+section { display: block; clear: both; max-width: 50em; padding: 0; width: 100%; margin: auto; }
+section#spreads div { width: 50%; float: left; display: inline-block; }
+section#calc { padding: 1em 0; }
+section#feeder { padding-bottom: 2em; }
+section#feeder div { width: 33%; display: inline-block; float: left; }
+section#feeder div p {
+    float: left;
+    margin: .2em 0;
+    width: calc(100% - 32px - .5em);
+    height: 2em;
+    text-align: left;
+    padding-left: .5em;
+    padding-top: .2em;
+}
+section#feeder div span {
+    width: 30px;
+    height: 30px;
+    margin-top: .1em;
+    display: inline-block;
+    background-image: url(items.png?2);
+    background-size: 832px 800px;
+    float: left;
+}
+section#feeder div span.pomeg { background-position: -30px -130px; }
+section#feeder div span.kelpsy { background-position: -66px -130px; }
+section#feeder div span.qualot { background-position: -96px -130px; }
+section#feeder div span.hondew { background-position: -130px -130px; }
+section#feeder div span.grepa { background-position: -163px -130px; }
+section#feeder div span.tamato { background-position: -190px -130px; }
+section#feeder div span.hpup { background-position: -450px -34px; }
+section#feeder div span.protein { background-position: -482px -34px; }
+section#feeder div span.iron { background-position: -514px -34px; }
+section#feeder div span.calcium { background-position: -578px -34px; }
+section#feeder div span.zinc { background-position: -674px -34px; }
+section#feeder div span.carbos { background-position: -546px -34px; }
+section#feeder div span.health { background-position: -800px -416px; }
+section#feeder div span.muscle { background-position: 0px -448px; }
+section#feeder div span.resist { background-position: -32px -448px; }
+section#feeder div span.genius { background-position: -64px -448px; }
+section#feeder div span.clever { background-position: -96px -448px; }
+section#feeder div span.swift { background-position: -128px -448px; }
+label { display: block; font-weight: bold; }
+textarea {
+    width: 95%;
+    height: 10em;
+    border: 1px solid #000;
+    border-radius: .6em;
+    margin-top: 1em;
+    padding: .5em;
+    font-size: .9em;
+}
+button {
+    display: block;
+    padding: .8em 1em;
+    border: 1px solid #000;
+    border-radius: .6em;
+    background: #C0C0C8;
+    font: .9em bold; 
+    margin: auto;
+    cursor: pointer;
+}
+#spread-change-display {
+    display: block;
+    height: 1.1em;
+    padding: .5em;
+    background: #E5E5E8;
+    border-radius: .6em;
+}
+
+section#faq p { text-align: left; margin-left: 1em; }
+section#faq h3 { background: #E8E8F8; padding: .5em; text-align: center; }
+p.code { background: #E5E5E5; font-family: monospace; padding: 1em; }
+section#faq h4 { padding: .5em 0 0 0; }
