@@ -1,5 +1,7 @@
 (() => {
 
+'use strict';
+
 const EV_NAMES = [
     "hp", "atk", "def", "spa", "spd", "spe",
 ];
@@ -40,6 +42,10 @@ const STATS_INFO = {
 };
 
 const spreadChangeEl = getElById("spread-change-display");
+const spreadNotifEls = {
+    old: getElById("spread-notes-old"),
+    new: getElById("spread-notes-new"),
+};
 const resultEls = {
     berries:  getElById("berries"),
     vitamins: getElById("vitamins"),
@@ -53,6 +59,18 @@ document.addEventListener("DOMContentLoaded", function(e) {
             let oldEvs = parseEvsFromPaste(getElById("spread-old").value);
             let newEvs = parseEvsFromPaste(getElById("spread-new").value);
             let evDiff = calcEvDifference(oldEvs, newEvs);
+            let evErrs = {
+                old: verifyEvs(oldEvs),
+                new: verifyEvs(newEvs),
+            };
+
+            // display EV errors
+            for (const set of [ 'old', 'new' ]) {
+                spreadNotifEls[set].innerHTML = '';
+                if (evErrs[set].wasted.length || evErrs[set].total < 0) {
+                    spreadNotifEls[set].innerHTML = getWastedEvsMsg(evErrs[set]);
+                }
+            }
             
             // display diff
             spreadChangeEl.innerHTML = evsToString(evDiff, true);
@@ -102,6 +120,9 @@ function parseEvsFromPaste(paste) {
             // skip unknown or missing stats
             if (STATS_INFO[stat] !== undefined && ev && stat) {
                 evs[stat] = parseInt(ev);
+                if (!validateEv(evs[stat])) {
+                    throw new Error(`Invalid EV for ${stat}: ${evs[stat]}`);
+                }
             }
         }
         break;
@@ -118,6 +139,42 @@ function parseEvsFromPaste(paste) {
     }
 
     return evs;
+}
+
+function validateEv(ev) {
+    return ev >= 0 && ev <= 252;
+}
+
+function verifyEvs(evs) {
+    let errs = { wasted: [], total: 0 };
+    let total = 0;
+    for (const evName of EV_NAMES) {
+        total += evs[evName];
+        if (evs[evName] === 0 || (evs[evName] - 4) % 8 === 0) {
+            continue;
+        }
+        errs.wasted.push({
+            stat: evName,
+            amount: evs[evName] < 4 ? evs[evName] : (evs[evName] - 4) % 8,
+        });
+    }
+
+    errs.total = 508 - total;
+
+    return errs;
+}
+
+function getWastedEvsMsg(errs) {
+    if (errs.total < 0) {
+        return `Spread has ${508 - errs.total} EVs (508 expected)`;
+    }
+
+    let msg = [];
+    for (const err of errs.wasted) {
+        msg.push(`${STATS_INFO[err.stat].name} ${err.amount}`);
+    }
+
+    return `Wasted EVs: ${msg.join(' / ')}`;
 }
 
 // calc the difference between two spreads

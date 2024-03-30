@@ -25,19 +25,21 @@ Careful Nature
 - Parting Shot  
 - Fake Out
                 </textarea>
+                <div class="notes" id="spread-notes-old"></div>
             </div>
             <div>
                 <label>New Spread:</label>
                 <textarea id="spread-new">
 Incineroar @ Safety Goggles  
 Level: 50  
-EVs: 255 HP / 188 Def / 68 SpD  
+EVs: 252 HP / 188 Def / 68 SpD  
 Impish Nature  
 - Flare Blitz  
 - Knock Off  
 - Parting Shot  
 - Fake Out
                 </textarea>
+                <div class="notes" id="spread-notes-new"></div>
             </div>
         </section>
 
@@ -65,13 +67,18 @@ Impish Nature
             <h4>Can't I just do this in my head?</h4>
             <p>Of course! And I did it that way for years myself. I just decided to write this for fun and to avoid doing extra math from time to time.</p>
 
-            <h4>How to I enter my spreads?</h4>
+            <h4>How do I enter my spreads?</h4>
             <p>The easiest way to do this is to click the "Import/Export" button on an individual Pokemon in the Showdown team builder and copy and paste the entire thing into each text box. The tool only searches for a string that begins with "EVs: " so you can also just paste the EVs and leave everything else off. This is done entirely in your browser, nothing is saved anywhere.</p>
             <p>If you don't use Pokemon Showdown for whatever reason, the format looks like this:</p>
             <p class="code">EVs: 188 HP / 68 Def / 100 SpA / 4 SpD / 148 Spe</p>
             <p>Only one stat is required for it to compute the difference, so the simplest accepted input would be something like this:</p>
             <p class="code">EVs: 0 HP</p>
             <p>EV names are: HP, Atk, Def, SpA, SpD, Spe</p>
+
+            <h4>What are wasted EVs?</h4>
+            <p>Sometimes you will see a warning below one of your spreads mentioning wasted EVs. At level 50 (which everything is auto-leveled to in VGC), the first 4 EVs will increase a stat by 1 point, and after that it takes 8 EVs to increase it further. As such your EVs should follow the formula:</p>
+            <p class="code">(EVs - 4) % 8 == 0</p>
+            <p>Essentially the EVs for each stat should be evenly divisible by 8 once you have subtracted the first 4. You can also have a maximum of 508 EVs total, with 252 being the max possible for one stat. The game will let you have 510 total, but the last 2 have no effect on level 50 Pokemon and can be ignored for our purposes.</p>
 
             <h4>I have a suggestion / question / found a bug!</h4>
             <p>You can reach out to me <a href="https://twitter.com/mikewVGC">on Twitter</a> with whatever you want. You can also <a href="https://github.com/mikewVGC/ev-adjustment-calc">check out the source code</a> or <a href="https://github.com/mikewVGC/ev-adjustment-calc/issues/new">submit an issue</a> if you prefer.</p>

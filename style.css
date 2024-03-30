@@ -3,7 +3,39 @@ main { min-width: 40em; margin: 2em auto; padding: 0 2em; display: block; }
 h2 { background: #E8E8F8; padding: .5em; text-align: center; }
 p { text-align: center; }
 section { display: block; clear: both; max-width: 50em; padding: 0; width: 100%; margin: auto; }
+label { display: block; font-weight: bold; }
+textarea {
+    width: 95%;
+    height: 10em;
+    border: 1px solid #000;
+    border-radius: .6em;
+    margin-top: .5em;
+    margin-bottom: 0;
+    padding: .5em;
+    font-size: .9em;
+}
+button {
+    display: block;
+    padding: .8em 2em;
+    border: 1px solid #000;
+    border-radius: .6em;
+    background: #C0C0C8;
+    font: .9em bold; 
+    margin: auto;
+    cursor: pointer;
+}
 section#spreads div { width: 50%; float: left; display: inline-block; }
+section#spreads .notes {
+    color: #000;
+    background: #E5E5E8;
+    height: 2.1em;
+    display: block;
+    width: 99%;
+    border: .5em solid #E5E5E8;
+    box-sizing: border-box;
+    font-size: .9em;
+    border-radius: 0 0 .4em .4em;
+}
 section#calc { padding: 1em 0; }
 section#feeder { padding-bottom: 2em; }
 section#feeder div { width: 33%; display: inline-block; float: left; }
@@ -43,26 +75,6 @@ section#feeder div span.resist { background-position: -32px -448px; }
 section#feeder div span.genius { background-position: -64px -448px; }
 section#feeder div span.clever { background-position: -96px -448px; }
 section#feeder div span.swift { background-position: -128px -448px; }
-label { display: block; font-weight: bold; }
-textarea {
-    width: 95%;
-    height: 10em;
-    border: 1px solid #000;
-    border-radius: .6em;
-    margin-top: 1em;
-    padding: .5em;
-    font-size: .9em;
-}
-button {
-    display: block;
-    padding: .8em 1em;
-    border: 1px solid #000;
-    border-radius: .6em;
-    background: #C0C0C8;
-    font: .9em bold; 
-    margin: auto;
-    cursor: pointer;
-}
 #spread-change-display {
     display: block;
     height: 1.1em;
