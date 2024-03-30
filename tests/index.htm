@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>EV Adjustment Calc - Tests</title>
+    <style>
+    div { width: 85%; }
+    button { padding: 1em 4em; cursor: pointer; }
+    .success { padding: 1em; margin: .5em 0; background: #0A0; color: #FFF; border: 1px solid #040; }
+    .failed { padding: 1em; margin: .5em 0; background: #A00; color: #FFF;  border: 1px solid #400; }
+    </style>
+</head>
+<body>
+
+    <h2>EV Adjustment Calc Tests</h2>
+
+    <div>
+        <button id="runTests">Run Tests</button>
+    </div>
+
+    <div id="results"></div>
+
+    <script src="../static/script.js"></script>
+    <script src="tests.js"></script>
+
+    <script>
+    let testMethods;
+    document.addEventListener("DOMContentLoaded", function(e) {
+        const tests = testSuite(getMethodsForTests());
+        document.getElementById("runTests").onclick = function() {
+            document.getElementById('results').innerHTML = '';
+            // run tests
+            for (const test of tests) {
+                test();
+            }
+        };
+    });
+    </script>
+
+</body>
+</html>

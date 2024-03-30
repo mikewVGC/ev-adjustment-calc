@@ -1,4 +1,4 @@
-(() => {
+((root) => {
 
 'use strict';
 
@@ -52,7 +52,7 @@ const resultEls = {
     feathers: getElById("feathers"),
 };
 
-document.addEventListener("DOMContentLoaded", function(e) {
+root.init = function(e) {
     getElById("calc-spread").addEventListener("click", function() {
         try {
             // get EVs and calc the difference
@@ -76,8 +76,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             spreadChangeEl.innerHTML = evsToString(evDiff, true);
 
             let itemList = getItemsToDisplay(
-                calcItemsNeededForSpreadChange(evDiff, oldEvs, newEvs),
-                resultEls
+                calcItemsNeededForSpreadChange(evDiff, oldEvs, newEvs)
             );
 
             // display the items
@@ -98,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
             }
         }
     });
-});
+};
 
 function getElById(id) {
     return document.getElementById(id);
@@ -226,7 +225,7 @@ function calcItemsNeededForSpreadChange(diffs, oldEvs, newEvs) {
 }
 
 // get a list of items based on the return from calcItemsNeededForSpreadChange
-function getItemsToDisplay(items, elements) {
+function getItemsToDisplay(items) {
     let evs = Object.keys(items);
     let itemList = { berries: [], vitamins: [], feathers: [] };
 
@@ -254,4 +253,17 @@ function getItemsToDisplay(items, elements) {
     return itemList;
 }
 
-})();
+root.getMethodsForTests = function() {
+    return {
+        parseEvsFromPaste: parseEvsFromPaste,
+        validateEv: validateEv,
+        verifyEvs: verifyEvs,
+        getWastedEvsMsg: getWastedEvsMsg,
+        calcEvDifference: calcEvDifference,
+        evsToString: evsToString,
+        calcItemsNeededForSpreadChange: calcItemsNeededForSpreadChange,
+        getItemsToDisplay: getItemsToDisplay,
+    };
+};
+
+})(this);
